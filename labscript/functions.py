@@ -43,6 +43,9 @@ def ramp(duration, initial, final):
     m = (final - initial)/duration
     return lambda t: m*t + initial
 
+def ramp_without_initial(duration, final):
+    return lambda initial: ramp(duration, initial, final)
+
 def sine(duration, amplitude, angfreq, phase, dc_offset):
     """Defines a sine wave.
 
@@ -59,7 +62,7 @@ def sine(duration, amplitude, angfreq, phase, dc_offset):
         func: Function that takes a single parameter `t`.
     """
     return lambda t: amplitude*sin(angfreq*(t) + phase) + dc_offset
-    
+
 def sine_ramp(duration, initial, final):
     """Defines a square sinusoidally increasing ramp.
 
@@ -74,7 +77,7 @@ def sine_ramp(duration, initial, final):
         func: Function that takes a single parameter `t`.
     """
     return lambda t: (final-initial)*(sin(pi*(t)/(2*duration)))**2 + initial
-    
+
 def sine4_ramp(duration, initial, final):
     """Defines a quartic sinusoidally increasing ramp.
 
@@ -89,7 +92,7 @@ def sine4_ramp(duration, initial, final):
         func: Function that takes a single parameter `t`.
     """
     return lambda t: (final-initial)*(sin(pi*(t)/(2*duration)))**4 + initial
-    
+
 def sine4_reverse_ramp(duration, initial, final):
     """Defines a quartic sinusoidally decreasing ramp.
 
@@ -104,7 +107,7 @@ def sine4_reverse_ramp(duration, initial, final):
         func: Function that takes a single parameter `t`.
     """
     return lambda t: (final-initial)*(sin(pi/2+pi*(t)/(2*duration)))**4 + initial
-    
+
 def exp_ramp(duration,initial,final,zero):
     """Defines an exponential ramp via offset value.
 
@@ -122,7 +125,7 @@ def exp_ramp(duration,initial,final,zero):
     """
     rate = 1/duration * log((initial-zero)/(final-zero))
     return lambda t: (initial-zero)*exp(-rate*(t)) + zero
-    
+
 def exp_ramp_t(duration,initial,final,time_constant):
     """Defines an exponential ramp via time constant.
 
