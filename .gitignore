@@ -166,3 +166,4 @@ conda_packages
 docs/html/
 docs/source/_build/
 docs/source/components.rst
+pip-wheel-metadata/labscript.dist-info/top_level.txt
