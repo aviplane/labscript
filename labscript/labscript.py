@@ -751,9 +751,9 @@ class Pseudoclock(Device):
             change_times.setdefault(clock_line, [])
             ramps_by_clockline.setdefault(clock_line, [])
             for output in outputs:
-                # print 'output name: %s'%output.name
+                # print('output name: %s'%output.name)
                 output_change_times = output.get_change_times()
-                # print output_change_times
+                # print(output_change_times)
                 change_times[clock_line].extend(output_change_times)
                 all_change_times.extend(output_change_times)
                 ramps_by_clockline[clock_line].extend(output.get_ramp_times())
